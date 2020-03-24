@@ -1,7 +1,6 @@
 package com.bibliotheque.models;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -36,11 +35,9 @@ public class Utilisateur {
     private String motDePasse;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "t_role_utilisateur", joinColumns = @JoinColumn(name = "utilisateur_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "t_role_utilisateur", joinColumns = @JoinColumn(name = "util_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
 
-    @OneToMany(mappedBy = "utilisateur")
-    private List<Livre> livresList;
 
     public Utilisateur() {
     }

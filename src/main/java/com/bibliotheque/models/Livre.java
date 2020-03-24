@@ -31,29 +31,16 @@ public class Livre {
     @Column(name = "livre_auteur")
     private String auteur;
 
-    @ManyToOne
-    @JoinColumn(name = "utilisateur_id")
-    private Utilisateur utilisateur;
-
     public Livre() {
     }
 
-    public Livre(String nom, int nbDispo, boolean pret, Date date, boolean prolongation, String auteur, Utilisateur utilisateur) {
+    public Livre(String nom, int nbDispo, boolean pret, Date date, boolean prolongation, String auteur) {
         this.nom = nom;
         this.nbDispo = nbDispo;
         this.pret = pret;
         this.date = date;
         this.prolongation = prolongation;
         this.auteur = auteur;
-        this.utilisateur = utilisateur;
-    }
-
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
-    }
-
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
     }
 
     public int getId() {

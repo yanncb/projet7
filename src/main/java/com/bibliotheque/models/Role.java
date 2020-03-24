@@ -13,7 +13,7 @@ public class Role {
     @Column(name = "role_id")
     private int id;
 
-    @Column(name = "rol_nom")
+    @Column(name = "role_nom")
     private String rolNom;
 
 
