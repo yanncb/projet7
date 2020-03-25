@@ -13,11 +13,14 @@ public class Utilisateur {
     @Column(name = "util_id")
     private int id;
 
+    @Column(name = "util_prenom")
+    private String prenom;
+
     @Column(name = "util_nom")
     private String nom;
 
-    @Column(name = "util_prenom")
-    private String prenom;
+    @Column(name = "util_mot_de_passe")
+    private String motDePasse;
 
     @Column(name = "util_adresse")
     private String adresse;
@@ -25,22 +28,22 @@ public class Utilisateur {
     @Column(name = "util_num_tel")
     private String numeroDeTelephone;
 
-    @Column(name = "util_num_carte_bibliotheque")
-    private String numCarteBibliotheque;
-
     @Column(name = "util_mail")
     private String mail;
 
-    @Column(name = "util_mot_de_passe")
-    private String motDePasse;
+
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "t_role_utilisateur", joinColumns = @JoinColumn(name = "util_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
 
+    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL)
+    private List<Exemplaire> exemplaireList;
 
     public Utilisateur() {
     }
+
+
 
     public List<Role> getRoles() {
         return roles;
@@ -90,14 +93,6 @@ public class Utilisateur {
         this.numeroDeTelephone = numeroDeTelephone;
     }
 
-    public String getNumCarteBibliotheque() {
-        return numCarteBibliotheque;
-    }
-
-    public void setNumCarteBibliotheque(String numCarteBibliotheque) {
-        this.numCarteBibliotheque = numCarteBibliotheque;
-    }
-
     public String getMail() {
         return mail;
     }
@@ -122,7 +117,6 @@ public class Utilisateur {
                 ", prenom='" + prenom + '\'' +
                 ", adresse='" + adresse + '\'' +
                 ", numeroDeTelephone='" + numeroDeTelephone + '\'' +
-                ", numCarteBibliotheque='" + numCarteBibliotheque + '\'' +
                 ", mail='" + mail + '\'' +
                 ", motDePasse='" + motDePasse + '\'' +
                 '}';

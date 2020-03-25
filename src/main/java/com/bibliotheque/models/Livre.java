@@ -1,7 +1,7 @@
 package com.bibliotheque.models;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "t_livre")
@@ -13,34 +13,39 @@ public class Livre {
     @Column(name = "livre_id")
     private int id;
 
-    @Column(name = "livre_nom")
-    private String nom;
-
-    @Column(name = "livre_nb_dispo")
-    private int nbDispo;
-
-    @Column(name = "livre_pret")
-    private boolean pret;
-
-    @Column(name = "livre_date_emprunt")
-    private Date date;
-
-    @Column(name = "livre_prolongation")
-    private boolean prolongation;
+    @Column(name = "livre_titre")
+    private String titre;
 
     @Column(name = "livre_auteur")
     private String auteur;
 
+
+//    @Column(name = "livre_nom")
+//    private String nom;
+//
+//    @Column(name = "livre_nb_dispo")
+//    private int nbDispo;
+//
+//    @Column(name = "livre_pret")
+//    private boolean pret;
+//
+//    @Column(name = "livre_date_emprunt")
+//    private Date date;
+//
+//    @Column(name = "livre_prolongation")
+//    private boolean prolongation;
+
+
+    @OneToMany(mappedBy = "livre", cascade = CascadeType.ALL)
+    private List<Exemplaire> exemplaireList;
+
     public Livre() {
     }
 
-    public Livre(String nom, int nbDispo, boolean pret, Date date, boolean prolongation, String auteur) {
-        this.nom = nom;
-        this.nbDispo = nbDispo;
-        this.pret = pret;
-        this.date = date;
-        this.prolongation = prolongation;
+    public Livre(String titre, String auteur, List<Exemplaire> exemplaireList) {
+        this.titre = titre;
         this.auteur = auteur;
+        this.exemplaireList = exemplaireList;
     }
 
     public int getId() {
@@ -51,44 +56,12 @@ public class Livre {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getTitre() {
+        return titre;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public int getNbDispo() {
-        return nbDispo;
-    }
-
-    public void setNbDispo(int nbDispo) {
-        this.nbDispo = nbDispo;
-    }
-
-    public boolean isPret() {
-        return pret;
-    }
-
-    public void setPret(boolean pret) {
-        this.pret = pret;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public boolean isProlongation() {
-        return prolongation;
-    }
-
-    public void setProlongation(boolean prolongation) {
-        this.prolongation = prolongation;
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
 
     public String getAuteur() {
@@ -99,16 +72,21 @@ public class Livre {
         this.auteur = auteur;
     }
 
+    public List<Exemplaire> getExemplaireList() {
+        return exemplaireList;
+    }
+
+    public void setExemplaireList(List<Exemplaire> exemplaireList) {
+        this.exemplaireList = exemplaireList;
+    }
+
     @Override
     public String toString() {
         return "Livre{" +
                 "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", nbDispo=" + nbDispo +
-                ", pret=" + pret +
-                ", date=" + date +
-                ", prolongation=" + prolongation +
+                ", titre='" + titre + '\'' +
                 ", auteur='" + auteur + '\'' +
+                ", exemplaireList=" + exemplaireList +
                 '}';
     }
 }
