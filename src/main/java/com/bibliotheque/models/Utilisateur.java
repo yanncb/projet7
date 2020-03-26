@@ -30,9 +30,9 @@ public class Utilisateur {
 
     @Column(name = "util_mail")
     private String mail;
-    
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "t_role_utilisateur", joinColumns = @JoinColumn(name = "util_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "t_roles_utilisateur", joinColumns = @JoinColumn(name = "util_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
 
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL)
@@ -40,8 +40,6 @@ public class Utilisateur {
 
     public Utilisateur() {
     }
-
-
 
     public List<Role> getRoles() {
         return roles;

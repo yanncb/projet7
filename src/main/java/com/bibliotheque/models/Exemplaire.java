@@ -19,7 +19,7 @@ public class Exemplaire {
     @Column(name = "exemplaire_date_emprunt")
     private Date dateDemprunt;
 
-    @Column(name = "exemplaire_prolongation")
+    @Column(name = "exemplaire_prolonger")
     private boolean prolongerEmprunt;
 
     @Column(name = "exemplaire_nb_dispo")

@@ -10,7 +10,7 @@ public class Bibliotheque {
         @Id
         @SequenceGenerator(name = "T_BIBLIOTHEQUE_SEQ_GENERATOR", sequenceName = "T_BIBLIOTHEQUE_SEQ", initialValue = 1, allocationSize = 1)
         @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "T_BIBLIOTHEQUE_SEQ_GENERATOR")
-        @Column(name = "exemplaire_id")
+        @Column(name = "bibli_id")
         private int id;
 
         @Column(name = "bibli_nom")
