@@ -19,23 +19,6 @@ public class Livre {
     @Column(name = "livre_auteur")
     private String auteur;
 
-
-//    @Column(name = "livre_nom")
-//    private String nom;
-//
-//    @Column(name = "livre_nb_dispo")
-//    private int nbDispo;
-//
-//    @Column(name = "livre_pret")
-//    private boolean pret;
-//
-//    @Column(name = "livre_date_emprunt")
-//    private Date date;
-//
-//    @Column(name = "livre_prolongation")
-//    private boolean prolongation;
-
-
     @OneToMany(mappedBy = "livre", cascade = CascadeType.ALL)
     private List<Exemplaire> exemplaireList;
 

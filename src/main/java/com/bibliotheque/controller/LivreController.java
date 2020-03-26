@@ -57,12 +57,12 @@ public class LivreController {
     /**
      * Quand je tape un nom de livre (complet) dans ma recherche je veux une list de livre avec le meme nom.
      * Return la liste de livre avec le meme nom que celui en parametre.
-     * @param nom  nom du livre à rechercher
+     * @param titre  nom du livre à rechercher
      * @return Liste de livre correspondant au resultat de la recherche
      */
     @GetMapping(value = "/recherParNom")
-    public List<Livre> livresParNom(@PathVariable String nom) {
-
+    public List<Livre> livresParNom(@PathVariable String titre) {
+        List<Livre> livreParNom = livreRepository.findByTitre(titre);
         return listeDeLivre();
 
         //TODO implem à revoir.

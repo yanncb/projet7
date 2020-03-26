@@ -16,8 +16,8 @@ public class Bibliotheque {
         @Column(name = "bibli_nom")
         private String nom;
 
-    @OneToMany(mappedBy = "bibliotheque", cascade = CascadeType.ALL)
-    private List<Exemplaire> exemplaireList;
+        @OneToMany(mappedBy = "bibliotheque", cascade = CascadeType.ALL)
+        private List<Exemplaire> exemplaireList;
 
     public Bibliotheque() {
     }

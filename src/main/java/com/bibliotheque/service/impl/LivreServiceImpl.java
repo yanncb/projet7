@@ -21,13 +21,5 @@ public class LivreServiceImpl implements LivreService {
         return livreRepository.findAll();
     }
 
-    @Override
-    public void ajouterLivre(Livre livre) {
-        livre.setAuteur(livre.getAuteur());
-        livre.setDate(Date.from(Instant.now()));
-        livre.setNbDispo(livre.getNbDispo());
-        livre.setNom(livre.getNom());
-        livre.setPret(false);
-        livreRepository.save(livre);
-    }
+
 }

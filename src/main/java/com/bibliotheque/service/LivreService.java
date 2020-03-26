@@ -15,10 +15,5 @@ public interface LivreService {
      */
     List<Livre> rechercherTousLesLivres();
 
-    /**
-     * ajouter Utilisateur
-     *
-     * @param livre information d'un utilisateur pour sauvegard en base
-     */
-    void ajouterLivre(Livre livre);
+
 }

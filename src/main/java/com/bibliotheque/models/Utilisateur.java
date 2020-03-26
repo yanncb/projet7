@@ -30,9 +30,7 @@ public class Utilisateur {
 
     @Column(name = "util_mail")
     private String mail;
-
-
-
+    
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "t_role_utilisateur", joinColumns = @JoinColumn(name = "util_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
