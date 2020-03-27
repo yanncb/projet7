@@ -2,11 +2,12 @@ package com.bibliotheque.controller;
 
 import com.bibliotheque.exception.LivreNotFoundexception;
 import com.bibliotheque.models.Livre;
+import com.bibliotheque.repository.ExemplaireRepository;
 import com.bibliotheque.repository.LivreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,6 +19,9 @@ public class LivreController {
     @Autowired
     LivreRepository livreRepository;
 
+    @Autowired
+    ExemplaireRepository exemplaireRepository;
+
     @GetMapping(value = "/livres")
     public List<Livre> listeDeLivre() {
         List<Livre> livres = livreRepository.findAll();
@@ -27,18 +31,19 @@ public class LivreController {
         return livres;
     }
 
-    @GetMapping(value = "/livre/{id}")
-    public Livre recupererUnLivreParId(@PathVariable int id) {
-        Optional<Livre> livre = livreRepository.findById(id);
+    @GetMapping(value = "/livre/{livreId}")
+    public Livre recupererUnLivreParId(@PathVariable int livreId) {
+        Optional<Livre> livre = livreRepository.findById(livreId);
 
         if (!livre.isPresent())
-            throw new LivreNotFoundexception("Le produit correspondant à cet identifiant " + id + "n'est pas disponible ou n'existe pas");
+            throw new LivreNotFoundexception("Le produit correspondant à cet identifiant " + livreId + "n'est pas disponible ou n'existe pas");
 
         return livre.get();
     }
 
     /**
      * Quand je veux voir mes emprunts je clique sur mes emprunts et j'affiche tous les livre emprunter par (moi) utilisateur.
+     *
      * @param nom
      * @return
      */
@@ -57,34 +62,22 @@ public class LivreController {
     /**
      * Quand je tape un nom de livre (complet) dans ma recherche je veux une list de livre avec le meme nom.
      * Return la liste de livre avec le meme nom que celui en parametre.
-     * @param titre  nom du livre à rechercher
+     *
+     * @param motCle nom du livre à rechercher
      * @return Liste de livre correspondant au resultat de la recherche
      */
-    @GetMapping(value = "/recherParNom")
-    public List<Livre> livresParNom(@PathVariable String titre) {
-        List<Livre> livreParNom = livreRepository.findByTitre(titre);
-        return listeDeLivre();
+    // TODO A SUPPRIMER ET METTRE RECHERCHE AVEC TITRE ET AUTEUR.
+//    @GetMapping(value = "/recherParNom")
+//    public List<Livre> livresParNom(@PathVariable String titre) {
+//        List<Livre> livreParNom = livreRepository.findByTitre(titre);
+//        return livreParNom;
+//    }
 
-        //TODO implem à revoir.
+    @GetMapping(value = "/recherche")
+    List<Livre> rechercherLivres(@RequestParam("motCle") String motCle){
+    String motCleRecherche = "%" + motCle + "%"; // A METTRE DANS LE SERVICE
 
-//        Optional<Livre> livreParNom = Optional.ofNullable(livreRepository.findByNom(nom));
-//        if (!livreParNom.isPresent())
-//            throw new LivreNotFoundexception("Le produit correspondant à ce nom " + nom + "n'est pas disponible ou n'existe pas");
-//
-//        return livreParNom.get();
-    }
-
-    @GetMapping(value = "/recherParAuteur")
-    public List<Livre> livresParNomDAteur(@PathVariable String auteur) {
-        return listeDeLivre();
-//
-        //TODO implem à revoir.
-//
-//        Optional<Livre> livreParNomDAteur = Optional.ofNullable(livreRepository.findByNom(auteur));
-//        if (!livreParNomDAteur.isPresent())
-//            throw new LivreNotFoundexception("Le produit correspondant à ce nom " + auteur + "n'est pas disponible ou n'existe pas");
-//
-//        return livreParNomDAteur.get();
+        return livreRepository.rechercherParAuteurOuTitre(motCleRecherche);
     }
 
 }
