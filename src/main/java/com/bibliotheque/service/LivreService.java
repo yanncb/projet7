@@ -1,8 +1,6 @@
 package com.bibliotheque.service;
 
-
 import com.bibliotheque.models.Livre;
-import com.bibliotheque.models.Utilisateur;
 
 import java.util.List;
 
@@ -15,6 +13,20 @@ public interface LivreService {
      */
     List<Livre> rechercherTousLesLivres();
 
+    /**
+     * Permets de cherche un livre par son id
+     *
+     * @param id identifiant unique
+     * @return livre
+     */
+    Livre findById(Integer id);
 
+    /**
+     * Rechercher un livre par un mot clé
+     *
+     * @param motCle nom ou titre
+     * @return le LIVRE
+     */
+    List<Livre> rechercherParAuteurOuTitre(String motCle);
 
 }
