@@ -7,17 +7,17 @@ import java.util.List;
 @Table(name = "t_bibliotheque")
 public class Bibliotheque {
 
-        @Id
-        @SequenceGenerator(name = "T_BIBLIOTHEQUE_SEQ_GENERATOR", sequenceName = "T_BIBLIOTHEQUE_SEQ", initialValue = 1, allocationSize = 1)
-        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "T_BIBLIOTHEQUE_SEQ_GENERATOR")
-        @Column(name = "bibli_id")
-        private int id;
+    @Id
+    @SequenceGenerator(name = "T_BIBLIOTHEQUE_SEQ_GENERATOR", sequenceName = "T_BIBLIOTHEQUE_SEQ", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "T_BIBLIOTHEQUE_SEQ_GENERATOR")
+    @Column(name = "bibli_id")
+    private int id;
 
-        @Column(name = "bibli_nom")
-        private String nom;
+    @Column(name = "bibli_nom")
+    private String nom;
 
-        @OneToMany(mappedBy = "bibliotheque", cascade = CascadeType.ALL)
-        private List<Exemplaire> exemplaireList;
+    @OneToMany(mappedBy = "bibliotheque", cascade = CascadeType.ALL)
+    private List<Exemplaire> exemplaireList;
 
     public Bibliotheque() {
     }

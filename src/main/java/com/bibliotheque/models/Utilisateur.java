@@ -31,6 +31,9 @@ public class Utilisateur {
     @Column(name = "util_mail")
     private String mail;
 
+    @Column(name = "util_carte_bibliotheque")
+    private int numCarte;
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "t_roles_utilisateur", joinColumns = @JoinColumn(name = "util_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
@@ -105,16 +108,25 @@ public class Utilisateur {
         this.motDePasse = motDePasse;
     }
 
+    public int getNumCarte() {
+        return numCarte;
+    }
+
+    public void setNumCarte(int numCarte) {
+        this.numCarte = numCarte;
+    }
+
     @Override
     public String toString() {
         return "Utilisateur{" +
                 "id=" + id +
-                ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
+                ", nom='" + nom + '\'' +
+                ", motDePasse='" + motDePasse + '\'' +
                 ", adresse='" + adresse + '\'' +
                 ", numeroDeTelephone='" + numeroDeTelephone + '\'' +
                 ", mail='" + mail + '\'' +
-                ", motDePasse='" + motDePasse + '\'' +
+                ", numCarte=" + numCarte +
                 '}';
     }
 }
