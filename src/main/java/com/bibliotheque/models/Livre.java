@@ -55,21 +55,12 @@ public class Livre {
         this.auteur = auteur;
     }
 
-    public List<Exemplaire> getExemplaireList() {
-        return exemplaireList;
-    }
-
-    public void setExemplaireList(List<Exemplaire> exemplaireList) {
-        this.exemplaireList = exemplaireList;
-    }
-
     @Override
     public String toString() {
         return "Livre{" +
                 "id=" + id +
                 ", titre='" + titre + '\'' +
                 ", auteur='" + auteur + '\'' +
-                ", exemplaireList=" + exemplaireList +
                 '}';
     }
 }

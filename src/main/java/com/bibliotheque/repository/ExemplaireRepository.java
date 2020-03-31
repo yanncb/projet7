@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface ExemplaireRepository extends JpaRepository<Exemplaire, Integer> {
 
-    @Query("select e from Exemplaire e join Utilisateur u on u.id = e.utilisateur WHERE u.id = :id")
+    @Query("select e from Exemplaire e  join fetch Utilisateur u on u = e.utilisateur join fetch e.livre l WHERE u.id = :id")
     List<Exemplaire> rechercherTousLesToposPourUtilisateur(@Param("id") int id);
 }

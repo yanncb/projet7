@@ -40,7 +40,21 @@ public class Exemplaire {
     public Exemplaire() {
     }
 
+    public Livre getLivre() {
+        return livre;
+    }
 
+    public void setLivre(Livre livre) {
+        this.livre = livre;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
 
     public int getId() {
         return id;

@@ -2,8 +2,6 @@ package com.bibliotheque.controller;
 
 import com.bibliotheque.exception.LivreNotFoundexception;
 import com.bibliotheque.models.Livre;
-import com.bibliotheque.repository.ExemplaireRepository;
-import com.bibliotheque.repository.LivreRepository;
 import com.bibliotheque.service.LivreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,7 +41,7 @@ public class LivreController {
      * @param nom
      * @return
      */
-    @GetMapping(value = "/listeDeMesLivres")
+    @GetMapping(value = "/listeDeMesLivres/{nom}")
     public List<Livre> listeDeMesEmprunts(@PathVariable String nom) {
 
         //TODO finaliser l'implementation
