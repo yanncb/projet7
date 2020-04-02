@@ -8,8 +8,8 @@ import java.util.List;
 public class Utilisateur {
 
     @Id
-    @SequenceGenerator(name = "T_UTILISATEUR_SEQ_GENERATOR", sequenceName = "T_UTILISATEUR_SEQ", initialValue = 1, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "T_UTILISATEUR_SEQ_GENERATOR")
+    @SequenceGenerator(name = "UTILISATEUR_SEQ_GENERATOR", sequenceName = "UTILISATEUR_SEQ", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UTILISATEUR_SEQ_GENERATOR")
     @Column(name = "util_id")
     private int id;
 

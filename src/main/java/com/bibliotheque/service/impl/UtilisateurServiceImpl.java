@@ -26,6 +26,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     @Override
     public Utilisateur ajouterUtilisateur(Utilisateur utilisateur) {
         utilisateur.setMotDePasse(utilisateur.getMotDePasse());
+        utilisateur.setAdresse(utilisateur.getAdresse());
+        utilisateur.setMail(utilisateur.getMail());
+        utilisateur.setNom(utilisateur.getNom());
+        utilisateur.setPrenom(utilisateur.getPrenom());
+        utilisateur.setNumCarte(utilisateur.getNumCarte());
+        utilisateur.setNumeroDeTelephone(utilisateur.getNumeroDeTelephone());
 //        Role utilisateurRole = roleRepository.findByRolNom("MEMBRE");
 //        utilisateur.setRoles(new ArrayList<Role>(Arrays.asList(utilisateurRole)));
         utilisateurRepository.save(utilisateur);

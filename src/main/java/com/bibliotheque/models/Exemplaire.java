@@ -8,8 +8,8 @@ import java.util.Date;
 public class Exemplaire {
 
     @Id
-    @SequenceGenerator(name = "T_EXEMPLAIRE_SEQ_GENERATOR", sequenceName = "T_EXEMPLAIRE_SEQ", initialValue = 1, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "T_EXEMPLAIRE_SEQ_GENERATOR")
+    @SequenceGenerator(name = "EXEMPLAIRE_SEQ_GENERATOR", sequenceName = "EXEMPLAIRE_SEQ", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EXEMPLAIRE_SEQ_GENERATOR")
     @Column(name = "exemplaire_id")
     private int id;
 
