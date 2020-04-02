@@ -32,7 +32,7 @@ public class Utilisateur {
     private String mail;
 
     @Column(name = "util_carte_bibliotheque")
-    private int numCarte;
+    private String numCarte;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "t_roles_utilisateur", joinColumns = @JoinColumn(name = "util_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -108,11 +108,11 @@ public class Utilisateur {
         this.motDePasse = motDePasse;
     }
 
-    public int getNumCarte() {
+    public String getNumCarte() {
         return numCarte;
     }
 
-    public void setNumCarte(int numCarte) {
+    public void setNumCarte(String numCarte) {
         this.numCarte = numCarte;
     }
 

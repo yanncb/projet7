@@ -17,6 +17,15 @@ public interface UtilisateurService {
      * ajouter Utilisateur
      *
      * @param utilisateur information d'un utilisateur pour sauvegard en base
+     * @return
      */
-    void ajouterUtilisateur(Utilisateur utilisateur);
+    Utilisateur ajouterUtilisateur(Utilisateur utilisateur);
+
+
+    /**
+     * Recherche d'un utilisateur par son num de carte
+     * @param numCarte numCarte identifiant unique
+     * @return utilisateur avec ce num de carte
+     */
+    Utilisateur rechercherUtilisateurParNumCarte(String numCarte);
 }
