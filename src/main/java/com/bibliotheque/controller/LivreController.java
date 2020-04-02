@@ -35,23 +35,7 @@ public class LivreController {
         return livre;
     }
 
-    /**
-     * Quand je veux voir mes emprunts je clique sur mes emprunts et j'affiche tous les livre emprunter par (moi) utilisateur.
-     *
-     * @param nom
-     * @return
-     */
-    @GetMapping(value = "/listeDeMesLivres/{nom}")
-    public List<Livre> listeDeMesEmprunts(@PathVariable String nom) {
 
-        //TODO finaliser l'implementation
-//        Optional<Livre> livres = livreRepository.rechercherTousLesLivresEmprunteParUtilisateur(nom);
-//
-//        if (!livres.isPresent())
-//            throw new LivreNotFoundexception("Vous n'avez aucun emprunt de livre en cours " + nom);
-
-        return listeDeLivre();
-    }
 
     @GetMapping(value = "/recherche")
     List<Livre> rechercherLivres(@RequestParam("motCle") String motCle) {

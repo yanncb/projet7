@@ -16,7 +16,8 @@ public class ExemplaireServiceImpl implements ExemplaireService {
 
     @Override
     public List<Exemplaire> rechercherTousLesExemplairesPourUtilisateur(int id) {
-
-        return exemplaireRepository.rechercherTousLesToposPourUtilisateur(id);
+        List<Exemplaire> exemplaire = exemplaireRepository.rechercherTousLesLivresPourUtilisateur(id);
+        
+        return exemplaire;
     }
 }

@@ -14,4 +14,6 @@ public interface LivreRepository extends JpaRepository<Livre, Integer> {
     @Query("select l from Livre l where l.auteur like :motCle or l.titre like :motCle")
     List<Livre> rechercherParAuteurOuTitre(@Param("motCle") String motCle);
 
+
+
 }

@@ -22,11 +22,12 @@ public interface LivreService {
     Livre findById(Integer id);
 
     /**
-     * Rechercher un livre par un mot clé
+     * Rechercher une liste de livre par un mot clé
      *
      * @param motCle nom ou titre
      * @return le LIVRE
      */
     List<Livre> rechercherParAuteurOuTitre(String motCle);
+
 
 }
