@@ -31,6 +31,14 @@ public class Livre {
         this.exemplaireList = exemplaireList;
     }
 
+    public List<Exemplaire> getExemplaireList() {
+        return exemplaireList;
+    }
+
+    public void setExemplaireList(List<Exemplaire> exemplaireList) {
+        this.exemplaireList = exemplaireList;
+    }
+
     public int getId() {
         return id;
     }

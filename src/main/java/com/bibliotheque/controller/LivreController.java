@@ -1,6 +1,7 @@
 package com.bibliotheque.controller;
 
 import com.bibliotheque.exception.LivreNotFoundexception;
+import com.bibliotheque.models.Exemplaire;
 import com.bibliotheque.models.Livre;
 import com.bibliotheque.service.LivreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,12 @@ public class LivreController {
         String motCleRecherche = "%" + motCle + "%";
 
         return livreService.rechercherParAuteurOuTitre(motCleRecherche);
+    }
+
+    @GetMapping(value = "liste-de-mes-emprunts/{utilisateurId}")
+    public List<Livre> exemplaireList(@PathVariable("utilisateurId") Integer id) {
+        List<Livre> livreList = livreService.rechercherTousLesLivresPourUtilisateur(id);
+        return livreList;
     }
 
 }

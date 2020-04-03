@@ -1,11 +1,15 @@
 package com.bibliotheque.models;
 
+import org.hibernate.annotations.NotFound;
+
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+
 
 @Entity
 @Table(name = "t_exemplaire")
 public class Exemplaire {
+
 
     @Id
     @SequenceGenerator(name = "EXEMPLAIRE_SEQ_GENERATOR", sequenceName = "EXEMPLAIRE_SEQ", initialValue = 1, allocationSize = 1)
@@ -17,13 +21,10 @@ public class Exemplaire {
     private boolean pret;
 
     @Column(name = "exemplaire_date_emprunt")
-    private Date dateDemprunt;
+    private LocalDate dateDemprunt;
 
     @Column(name = "exemplaire_prolonger")
     private boolean prolongerEmprunt;
-
-    @Column(name = "exemplaire_nb_dispo")
-    private int nbDispo;
 
     @ManyToOne
     @JoinColumn(name = "livre_id", nullable = false)
@@ -37,15 +38,18 @@ public class Exemplaire {
     @JoinColumn(name = "util_id", nullable = false)
     private Utilisateur utilisateur;
 
+    @Transient
+    private LocalDate dateRetour;
+
     public Exemplaire() {
     }
 
-    public Livre getLivre() {
-        return livre;
+    public LocalDate getDateRetour() {
+        return dateRetour;
     }
 
-    public void setLivre(Livre livre) {
-        this.livre = livre;
+    public void setDateRetour(LocalDate dateRetour) {
+        this.dateRetour = dateRetour;
     }
 
     public Utilisateur getUtilisateur() {
@@ -72,11 +76,11 @@ public class Exemplaire {
         this.pret = pret;
     }
 
-    public Date getDateDemprunt() {
+    public LocalDate getDateDemprunt() {
         return dateDemprunt;
     }
 
-    public void setDateDemprunt(Date dateDemprunt) {
+    public void setDateDemprunt(LocalDate dateDemprunt) {
         this.dateDemprunt = dateDemprunt;
     }
 
@@ -88,13 +92,6 @@ public class Exemplaire {
         this.prolongerEmprunt = prolongerEmprunt;
     }
 
-    public int getNbDispo() {
-        return nbDispo;
-    }
-
-    public void setNbDispo(int nbDispo) {
-        this.nbDispo = nbDispo;
-    }
 
     @Override
     public String toString() {
@@ -103,7 +100,6 @@ public class Exemplaire {
                 ", pret=" + pret +
                 ", dateDemprunt=" + dateDemprunt +
                 ", prolongerEmprunt=" + prolongerEmprunt +
-                ", nbDispo=" + nbDispo +
                 '}';
     }
 }

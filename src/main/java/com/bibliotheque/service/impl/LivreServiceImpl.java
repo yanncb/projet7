@@ -1,5 +1,6 @@
 package com.bibliotheque.service.impl;
 
+import com.bibliotheque.models.Exemplaire;
 import com.bibliotheque.models.Livre;
 import com.bibliotheque.repository.LivreRepository;
 import com.bibliotheque.service.LivreService;
@@ -11,6 +12,9 @@ import java.util.Optional;
 
 @Service
 public class LivreServiceImpl implements LivreService {
+
+    public static final int PERIODE_PROLONGEE_DE_PRET = 60;
+    private static final int PERIODE_INITIALE_DE_PRET = 30;
 
     @Autowired
     LivreRepository livreRepository;
@@ -40,6 +44,26 @@ public class LivreServiceImpl implements LivreService {
 
 
 
+    @Override
+    public List<Livre> rechercherTousLesLivresPourUtilisateur(int id) {
+        List<Livre> livres = livreRepository.rechercherTousLesLivresPourUtilisateur(id);
+        for (Livre livre : livres) {
+            for (Exemplaire exemplaire : livre.getExemplaireList()) {
+                calculerDateRetour(exemplaire);
+            }
+        }
+        return livres;
+    }
+
+
+    private void calculerDateRetour(Exemplaire exemplaire) {
+        if (exemplaire.isProlongerEmprunt()) {
+            exemplaire.setDateRetour(exemplaire.getDateDemprunt().plusDays(PERIODE_PROLONGEE_DE_PRET));
+        } else {
+            exemplaire.setDateRetour(exemplaire.getDateDemprunt().plusDays(PERIODE_INITIALE_DE_PRET));
+        }
+
+    }
 
 
 }

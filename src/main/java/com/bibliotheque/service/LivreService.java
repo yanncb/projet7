@@ -29,5 +29,11 @@ public interface LivreService {
      */
     List<Livre> rechercherParAuteurOuTitre(String motCle);
 
+    /**
+     *
+     * @param id
+     * @return
+     */
+    List<Livre> rechercherTousLesLivresPourUtilisateur(int id);
 
 }
