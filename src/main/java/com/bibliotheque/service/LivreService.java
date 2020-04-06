@@ -1,8 +1,10 @@
 package com.bibliotheque.service;
 
+import com.bibliotheque.models.Exemplaire;
 import com.bibliotheque.models.Livre;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface LivreService {
 
@@ -35,5 +37,8 @@ public interface LivreService {
      * @return
      */
     List<Livre> rechercherTousLesLivresPourUtilisateur(int id);
+
+    Exemplaire prolongerEmPrunt(int exemplaireId);
+
 
 }

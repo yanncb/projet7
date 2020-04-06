@@ -2,6 +2,7 @@ package com.bibliotheque.service.impl;
 
 import com.bibliotheque.models.Exemplaire;
 import com.bibliotheque.models.Livre;
+import com.bibliotheque.repository.ExemplaireRepository;
 import com.bibliotheque.repository.LivreRepository;
 import com.bibliotheque.service.LivreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class LivreServiceImpl implements LivreService {
 
     @Autowired
     LivreRepository livreRepository;
+
+    @Autowired
+    ExemplaireRepository exemplaireRepository;
 
     @Override
     public List<Livre> rechercherTousLesLivres() {
@@ -43,7 +47,6 @@ public class LivreServiceImpl implements LivreService {
     }
 
 
-
     @Override
     public List<Livre> rechercherTousLesLivresPourUtilisateur(int id) {
         List<Livre> livres = livreRepository.rechercherTousLesLivresPourUtilisateur(id);
@@ -65,5 +68,14 @@ public class LivreServiceImpl implements LivreService {
 
     }
 
+    public Exemplaire prolongerEmPrunt(int exemplaireId) {
+
+        Exemplaire exemplaire = exemplaireRepository.findById(exemplaireId).get();
+        exemplaire.setProlongerEmprunt(true);
+        exemplaireRepository.save(exemplaire);
+        calculerDateRetour(exemplaire);
+
+        return exemplaire;
+    }
 
 }

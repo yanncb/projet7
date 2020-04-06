@@ -1,7 +1,5 @@
 package com.bibliotheque.models;
 
-import org.hibernate.annotations.NotFound;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 
