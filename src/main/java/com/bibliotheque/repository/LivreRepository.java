@@ -15,7 +15,7 @@ public interface LivreRepository extends JpaRepository<Livre, Integer> {
     @Query("select l from Livre l where l.auteur like :motCle or l.titre like :motCle")
     List<Livre> rechercherParAuteurOuTitre(@Param("motCle") String motCle);
 
-    @Query("select l from Livre l  join fetch l.exemplaireList e join fetch Utilisateur u on u = e.utilisateur WHERE u.id = :id")
+    @Query("select distinct l from Livre l  join fetch l.exemplaireList e join fetch Utilisateur u on u = e.utilisateur WHERE u.id = :id")
     List<Livre> rechercherTousLesLivresPourUtilisateur(@Param("id") int id);
 
 

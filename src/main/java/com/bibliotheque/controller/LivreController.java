@@ -50,6 +50,12 @@ public class LivreController {
         List<Livre> livreList = livreService.rechercherTousLesLivresPourUtilisateur(id);
         return livreList;
     }
+//
+//    @GetMapping(value = "liste-de-mes-emprunts/{utilisateurId}")
+//    public List<Exemplaire> exemplaireList(@PathVariable("utilisateurId") Integer id) {
+//        List<Exemplaire> exemplairesList = livreService.rechercherTousLesExemplairesPourUtilisateur(id);
+//        return exemplairesList;
+//    }
 
     @PostMapping("prolonger-emprunt/{exemplaireId}")
     public Exemplaire prolongerEmprunt(@PathVariable("exemplaireId") Integer id) {

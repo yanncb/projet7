@@ -58,6 +58,16 @@ public class LivreServiceImpl implements LivreService {
         return livres;
     }
 
+//    @Override
+//    public List<Exemplaire> rechercherTousLesExemplairesPourUtilisateur(int utilisateurId) {
+//        List<Exemplaire> exemplaires = livreRepository.rechercherTousLesExemplairesPourUtilisateur(utilisateurId);
+//        for (Exemplaire exemplaire : exemplaires) {
+//
+//                calculerDateRetour(exemplaire);
+//            }
+//        return exemplaires;
+//    }
+
 
     private void calculerDateRetour(Exemplaire exemplaire) {
         if (exemplaire.isProlongerEmprunt()) {

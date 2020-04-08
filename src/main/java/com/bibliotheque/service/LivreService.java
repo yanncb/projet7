@@ -38,6 +38,9 @@ public interface LivreService {
      */
     List<Livre> rechercherTousLesLivresPourUtilisateur(int id);
 
+//    List<Exemplaire> rechercherTousLesExemplairesPourUtilisateur(int utilisateurId);
+
+
     Exemplaire prolongerEmPrunt(int exemplaireId);
 
 
