@@ -32,16 +32,36 @@ public interface LivreService {
     List<Livre> rechercherParAuteurOuTitre(String motCle);
 
     /**
-     *
      * @param id
      * @return
      */
     List<Livre> rechercherTousLesLivresPourUtilisateur(int id);
 
-//    List<Exemplaire> rechercherTousLesExemplairesPourUtilisateur(int utilisateurId);
 
-
+    /**
+     * Prolongation de l'emprunt de 4 semaines
+     *
+     * @param exemplaireId id de l'exemplaire pour savoir quel exemplaire a prolonger
+     * @return exemplaire.
+     */
     Exemplaire prolongerEmPrunt(int exemplaireId);
 
+    /**
+     * creer un emprunt pour le personnel de la bibliotheque
+     *
+     * @param exemplaireId  exemplaire id pour identifier l'exemplaire
+     * @param utilisateurId utilisateur id pour identifier l'utilisateur emprunteur
+     * @return exemplaire.
+     */
+    Exemplaire creerEmprunt(int exemplaireId, int utilisateurId);
+
+    /**
+     * retour d'un pret
+     * @param exemplaireId L'id de l'exemplaire pour trouver les informations neccessaire aux retours
+     * @return exemplaire
+     */
+    Exemplaire retourEmprunt(Integer exemplaireId);
 
 }
+
+

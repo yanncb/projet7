@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class LivreController {
@@ -50,16 +49,25 @@ public class LivreController {
         List<Livre> livreList = livreService.rechercherTousLesLivresPourUtilisateur(id);
         return livreList;
     }
-//
-//    @GetMapping(value = "liste-de-mes-emprunts/{utilisateurId}")
-//    public List<Exemplaire> exemplaireList(@PathVariable("utilisateurId") Integer id) {
-//        List<Exemplaire> exemplairesList = livreService.rechercherTousLesExemplairesPourUtilisateur(id);
-//        return exemplairesList;
-//    }
 
     @PostMapping("prolonger-emprunt/{exemplaireId}")
     public Exemplaire prolongerEmprunt(@PathVariable("exemplaireId") Integer id) {
         Exemplaire exemplaire = livreService.prolongerEmPrunt(id);
+        return exemplaire;
+    }
+
+
+    // -------------------------------------------- PARTIE RESERVE AU PERSONNEL -------------------------------------
+
+    @PostMapping(value = "creer-emprunt/{exemplaireId}/{utilisateurId}")
+    public Exemplaire creerEmprunt(@PathVariable("exemplaireId") Integer exemplaireId, @PathVariable ("utilisateurId") Integer utilisateurId) {
+        Exemplaire exemplaire = livreService.creerEmprunt(exemplaireId, utilisateurId);
+        return exemplaire;
+    }
+
+    @GetMapping(value = "retour-emprunt/{exemplaireId}")
+    public Exemplaire retourEmprunt(@PathVariable("exemplaireId") Integer exemplaireId) {
+        Exemplaire exemplaire = livreService.retourEmprunt(exemplaireId);
         return exemplaire;
     }
 

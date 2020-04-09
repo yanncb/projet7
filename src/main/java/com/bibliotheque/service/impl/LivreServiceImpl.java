@@ -2,12 +2,16 @@ package com.bibliotheque.service.impl;
 
 import com.bibliotheque.models.Exemplaire;
 import com.bibliotheque.models.Livre;
+import com.bibliotheque.models.Utilisateur;
 import com.bibliotheque.repository.ExemplaireRepository;
 import com.bibliotheque.repository.LivreRepository;
+import com.bibliotheque.repository.UtilisateurRepository;
 import com.bibliotheque.service.LivreService;
+import com.bibliotheque.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +26,9 @@ public class LivreServiceImpl implements LivreService {
 
     @Autowired
     ExemplaireRepository exemplaireRepository;
+
+    @Autowired
+    UtilisateurRepository utilisateurRepository;
 
     @Override
     public List<Livre> rechercherTousLesLivres() {
@@ -78,6 +85,7 @@ public class LivreServiceImpl implements LivreService {
 
     }
 
+    @Override
     public Exemplaire prolongerEmPrunt(int exemplaireId) {
 
         Exemplaire exemplaire = exemplaireRepository.findById(exemplaireId).get();
@@ -87,5 +95,31 @@ public class LivreServiceImpl implements LivreService {
 
         return exemplaire;
     }
+
+
+    // -------------------------------------------- PARTIE RESERVE AU PERSONNEL -------------------------------------
+
+
+    @Override
+    public Exemplaire creerEmprunt(int exemplaireId, int utilisateurId) {
+        Exemplaire exemplaire = exemplaireRepository.findById(exemplaireId).get();
+        exemplaire.setPret(true);
+        Utilisateur utilisateur = utilisateurRepository.findById(utilisateurId).get();
+        exemplaire.setUtilisateur(utilisateur);
+        exemplaire.setDateDemprunt(LocalDate.now());
+        exemplaireRepository.save(exemplaire);
+        return exemplaire;
+    }
+
+    @Override
+    public Exemplaire retourEmprunt(Integer exemplaireId) {
+        Exemplaire exemplaire = exemplaireRepository.findById(exemplaireId).get();
+        exemplaire.setPret(false);
+        exemplaire.setUtilisateur(null);
+        exemplaire.setDateDemprunt(null);
+        exemplaireRepository.save(exemplaire);
+        return exemplaire;
+    }
+
 
 }
