@@ -7,7 +7,6 @@ import com.bibliotheque.repository.ExemplaireRepository;
 import com.bibliotheque.repository.LivreRepository;
 import com.bibliotheque.repository.UtilisateurRepository;
 import com.bibliotheque.service.LivreService;
-import com.bibliotheque.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -65,16 +64,6 @@ public class LivreServiceImpl implements LivreService {
         return livres;
     }
 
-//    @Override
-//    public List<Exemplaire> rechercherTousLesExemplairesPourUtilisateur(int utilisateurId) {
-//        List<Exemplaire> exemplaires = livreRepository.rechercherTousLesExemplairesPourUtilisateur(utilisateurId);
-//        for (Exemplaire exemplaire : exemplaires) {
-//
-//                calculerDateRetour(exemplaire);
-//            }
-//        return exemplaires;
-//    }
-
 
     private void calculerDateRetour(Exemplaire exemplaire) {
         if (exemplaire.isProlongerEmprunt()) {
@@ -88,7 +77,7 @@ public class LivreServiceImpl implements LivreService {
     @Override
     public Exemplaire prolongerEmPrunt(int exemplaireId) {
 
-        Exemplaire exemplaire = exemplaireRepository.findById(exemplaireId).get();
+        Exemplaire exemplaire = exemplaireRepository.findById(exemplaireId);
         exemplaire.setProlongerEmprunt(true);
         exemplaireRepository.save(exemplaire);
         calculerDateRetour(exemplaire);
@@ -102,9 +91,9 @@ public class LivreServiceImpl implements LivreService {
 
     @Override
     public Exemplaire creerEmprunt(int exemplaireId, int utilisateurId) {
-        Exemplaire exemplaire = exemplaireRepository.findById(exemplaireId).get();
+        Exemplaire exemplaire = exemplaireRepository.findById(exemplaireId);
         exemplaire.setPret(true);
-        Utilisateur utilisateur = utilisateurRepository.findById(utilisateurId).get();
+        Utilisateur utilisateur = utilisateurRepository.findById(utilisateurId);
         exemplaire.setUtilisateur(utilisateur);
         exemplaire.setDateDemprunt(LocalDate.now());
         exemplaireRepository.save(exemplaire);
@@ -112,14 +101,13 @@ public class LivreServiceImpl implements LivreService {
     }
 
     @Override
-    public Exemplaire retourEmprunt(Integer exemplaireId) {
-        Exemplaire exemplaire = exemplaireRepository.findById(exemplaireId).get();
+    public Exemplaire retourEmprunt(int exemplaireId) {
+        Exemplaire exemplaire = exemplaireRepository.findById(exemplaireId);
         exemplaire.setPret(false);
         exemplaire.setUtilisateur(null);
         exemplaire.setDateDemprunt(null);
         exemplaireRepository.save(exemplaire);
         return exemplaire;
     }
-
 
 }

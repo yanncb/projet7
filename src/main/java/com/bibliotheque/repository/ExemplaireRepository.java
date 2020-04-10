@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ExemplaireRepository extends JpaRepository<Exemplaire, Integer> {
 
-//    Exemplaire findById(int exemplaireId);
+    Exemplaire findById(int exemplaireId);
 
 }

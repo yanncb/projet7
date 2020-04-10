@@ -33,7 +33,7 @@ public class Exemplaire {
     private Bibliotheque bibliotheque;
 
     @ManyToOne
-    @JoinColumn(name = "util_id", nullable = false)
+    @JoinColumn(name = "util_id")
     private Utilisateur utilisateur;
 
     @Transient

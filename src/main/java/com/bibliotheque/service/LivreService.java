@@ -4,7 +4,6 @@ import com.bibliotheque.models.Exemplaire;
 import com.bibliotheque.models.Livre;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface LivreService {
 
@@ -57,10 +56,11 @@ public interface LivreService {
 
     /**
      * retour d'un pret
+     *
      * @param exemplaireId L'id de l'exemplaire pour trouver les informations neccessaire aux retours
      * @return exemplaire
      */
-    Exemplaire retourEmprunt(Integer exemplaireId);
+    Exemplaire retourEmprunt(int exemplaireId);
 
 }
 
