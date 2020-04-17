@@ -18,5 +18,6 @@ public interface LivreRepository extends JpaRepository<Livre, Integer> {
     @Query("select distinct l from Livre l  join fetch l.exemplaireList e join fetch Utilisateur u on u = e.utilisateur WHERE u.id = :id")
     List<Livre> rechercherTousLesLivresPourUtilisateur(@Param("id") int id);
 
-
+    @Query("select distinct l from Livre l  join fetch l.exemplaireList e join fetch Utilisateur u on u = e.utilisateur WHERE e.pret = true")
+    List<Livre> rechercherLivreDontExemplaireEnRetard();
 }

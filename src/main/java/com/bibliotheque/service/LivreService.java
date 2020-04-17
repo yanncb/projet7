@@ -36,7 +36,7 @@ public interface LivreService {
      */
     List<Livre> rechercherTousLesLivresPourUtilisateur(int id);
 
-
+    // TODO
     /**
      * Prolongation de l'emprunt de 4 semaines
      *
@@ -62,7 +62,8 @@ public interface LivreService {
      */
     Exemplaire retourEmprunt(int exemplaireId);
 
-     List<Exemplaire> trouverLesExemplairesEnRetard();
+
+     List<Livre> trouverLesLivresDontLesExemplairesSontEnRetard();
 
     }
 

@@ -3,7 +3,6 @@ package com.bibliotheque.controller;
 import com.bibliotheque.exception.LivreNotFoundexception;
 import com.bibliotheque.models.Exemplaire;
 import com.bibliotheque.models.Livre;
-import com.bibliotheque.service.ExemplaireService;
 import com.bibliotheque.service.LivreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +15,6 @@ public class LivreController {
     @Autowired
     LivreService livreService;
 
-    @Autowired
-    ExemplaireService exemplaireService;
 
 
     @GetMapping(value = "/livres")
@@ -27,6 +24,12 @@ public class LivreController {
         if (livres.isEmpty()) throw new LivreNotFoundexception("Aucun livre n'est disponible pour le moment");
 
         return livres;
+    }
+
+    @GetMapping(value = "/livres-en-retard")
+    public List<Livre> listeDeLivreEnRetard(){
+        List<Livre> livreList = livreService.trouverLesLivresDontLesExemplairesSontEnRetard();
+        return livreList;
     }
 
     @GetMapping(value = "/livre/{livreId}")

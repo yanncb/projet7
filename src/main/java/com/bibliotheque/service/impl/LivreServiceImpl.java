@@ -76,18 +76,26 @@ public class LivreServiceImpl implements LivreService {
     }
 
 
-    public List<Exemplaire> trouverLesExemplairesEnRetard() {
-        List<Exemplaire> exemplaireARendre = exemplaireRepository.findAll();
-        List<Exemplaire> exemplairesTrie = new ArrayList<Exemplaire>();
-        exemplaireARendre.forEach(
-                exemplaire -> {
-                    calculerDateRetour(exemplaire);
-                    if (exemplaire.getDateRetour().isBefore(LocalDate.now()) || exemplaire.getDateRetour().isEqual(LocalDate.now())) {
-                        exemplairesTrie.add(exemplaire);
-                    }
+    public List<Livre> trouverLesLivresDontLesExemplairesSontEnRetard() {
+        List<Livre> livresEmpruntes = livreRepository.rechercherLivreDontExemplaireEnRetard();
+        List<Livre> livreARendre = new ArrayList<>();
+
+        for (Livre livre : livresEmpruntes) {
+            List<Exemplaire> exemplairesARendre = new ArrayList<>();
+
+            for (Exemplaire exemplaire : livre.getExemplaireList()) {
+                calculerDateRetour(exemplaire);
+                if (exemplaire.getDateRetour().isBefore(LocalDate.now()) || exemplaire.getDateRetour().isEqual(LocalDate.now())) {
+                    exemplairesARendre.add(exemplaire);
                 }
-        );
-        return exemplairesTrie;
+            }
+
+            if (!exemplairesARendre.isEmpty()) {
+                livreARendre.add(livre);
+            }
+        }
+
+        return livreARendre;
     }
 
 
