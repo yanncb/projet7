@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,14 +66,30 @@ public class LivreServiceImpl implements LivreService {
     }
 
 
-    private void calculerDateRetour(Exemplaire exemplaire) {
+    private Exemplaire calculerDateRetour(Exemplaire exemplaire) {
         if (exemplaire.isProlongerEmprunt()) {
             exemplaire.setDateRetour(exemplaire.getDateDemprunt().plusDays(PERIODE_PROLONGEE_DE_PRET));
         } else {
             exemplaire.setDateRetour(exemplaire.getDateDemprunt().plusDays(PERIODE_INITIALE_DE_PRET));
         }
-
+        return exemplaire;
     }
+
+
+    public List<Exemplaire> trouverLesExemplairesEnRetard() {
+        List<Exemplaire> exemplaireARendre = exemplaireRepository.findAll();
+        List<Exemplaire> exemplairesTrie = new ArrayList<Exemplaire>();
+        exemplaireARendre.forEach(
+                exemplaire -> {
+                    calculerDateRetour(exemplaire);
+                    if (exemplaire.getDateRetour().isBefore(LocalDate.now()) || exemplaire.getDateRetour().isEqual(LocalDate.now())) {
+                        exemplairesTrie.add(exemplaire);
+                    }
+                }
+        );
+        return exemplairesTrie;
+    }
+
 
     @Override
     public Exemplaire prolongerEmPrunt(int exemplaireId) {

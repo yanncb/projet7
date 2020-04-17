@@ -62,6 +62,8 @@ public interface LivreService {
      */
     Exemplaire retourEmprunt(int exemplaireId);
 
-}
+     List<Exemplaire> trouverLesExemplairesEnRetard();
+
+    }
 
 
