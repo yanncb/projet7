@@ -32,8 +32,6 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         utilisateur.setPrenom(utilisateur.getPrenom());
         utilisateur.setNumCarte(utilisateur.getNumCarte());
         utilisateur.setNumeroDeTelephone(utilisateur.getNumeroDeTelephone());
-//        Role utilisateurRole = roleRepository.findByRolNom("MEMBRE");
-//        utilisateur.setRoles(new ArrayList<Role>(Arrays.asList(utilisateurRole)));
         utilisateurRepository.save(utilisateur);
         return utilisateur;
     }

@@ -61,7 +61,6 @@ En POST : localhost:9001/creer-emprunt/5/5 <== Creation d'un emprunt IdExemplair
 - Java
 - Spring Boot
 - Base de donnée PostgresSql
-- JSP
 - IntelliJ
 
 ## Auteurs

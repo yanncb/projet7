@@ -31,12 +31,12 @@ public interface LivreService {
     List<Livre> rechercherParAuteurOuTitre(String motCle);
 
     /**
-     * @param id
-     * @return
+     * Methode permettant de retorne la liste de livre etant en pret chez un utilisateur.
+     * @param id id de l'utilisateur
+     * @return liste de livre detenu par un utilisateur
      */
     List<Livre> rechercherTousLesLivresPourUtilisateur(int id);
 
-    // TODO
     /**
      * Prolongation de l'emprunt de 4 semaines
      *
@@ -63,6 +63,10 @@ public interface LivreService {
     Exemplaire retourEmprunt(int exemplaireId);
 
 
+    /**
+     * Chercher les livre dont les exemplaires sont en retard
+     * @return liste de livre dont les exemplaires sont en retard.
+     */
      List<Livre> trouverLesLivresDontLesExemplairesSontEnRetard();
 
     }

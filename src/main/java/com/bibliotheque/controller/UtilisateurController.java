@@ -12,7 +12,6 @@ public class UtilisateurController {
     UtilisateurService utilisateurService;
 
 
-    // TODO modifier nom de methode a rechercher pas connexion
     @GetMapping("/connexionUtilisateur/{numCarte}")
     Utilisateur connexionUtilisateur(@PathVariable("numCarte") String numCarte){
        Utilisateur utilisateur = utilisateurService.rechercherUtilisateurParNumCarte(numCarte);
